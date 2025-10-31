@@ -1,0 +1,25 @@
+{
+  "name": "cookie-clicker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.9.2",
+    "@types/ws": "^8.18.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/express-session": "^1.18.2",
+    "typescript": "^5.9.3"
+  }
+}
