@@ -25,7 +25,7 @@ app.get("/buy/:id", (req, res) => {
     if (productId == "1") {
         if (clicks >= 100) {
             clicks = clicks - 100;
-            countBy = 2;
+            countBy = countBy * 2;
             res.json({ message: "item bought" }).status(200);
         }
         else {

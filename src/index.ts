@@ -16,7 +16,6 @@ const wss = new WebSocketServer({ server });
 
 
 wss.on("connection", (ws): void => {
-    console.log("websocket connected");
     ws.send(clicks);
     ws.on("message", (message): void => {
         clicks = clicks + countBy;
@@ -32,7 +31,7 @@ app.get("/buy/:id", (req: Request, res: Response): void => {
     if (productId == "1"){
         if (clicks >= 100) {
             clicks = clicks - 100;
-            countBy = 2;
+            countBy = countBy * 2;
             res.json({ message: "item bought" }).status(200);
         }
         else {
