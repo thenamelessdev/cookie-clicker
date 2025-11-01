@@ -7,3 +7,6 @@
 #cookieBtn:hover{
     transform: scale(1.05);
 }
+body{
+    text-align: center;
+}

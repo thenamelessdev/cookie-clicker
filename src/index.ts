@@ -1,16 +1,18 @@
 import express, { Request, Response } from "express";
+import http from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { fileURLToPath } from "url";
 import path from "path";
 
 const app = express();
+const server = http.createServer(app);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootdir = path.join(__dirname, "..");
 let clicks = 0;
 let countBy = 1;
 
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ server });
 
 
 wss.on("connection", (ws): void => {
@@ -47,4 +49,4 @@ app.get("/set/:balance", (req: Request, res: Response): void => {
     res.json({ message: "added money" });
 });
 
-app.listen(5050);
+server.listen(5050);

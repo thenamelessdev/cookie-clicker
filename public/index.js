@@ -1,7 +1,7 @@
 const cookieCounter = document.getElementById("clicks");
 const cookieBtn = document.getElementById("cookieBtn");
-const buy0Btn = document.getElementById("buy0");;
-const wss = new WebSocket("ws://localhost:8080");
+const buy0Btn = document.getElementById("buy0");
+const wss = new WebSocket(`ws://${location.hostname}:5050`);
 
 wss.addEventListener("message", (event) => {
     cookieCounter.textContent = `Clicks: ${event.data}`;
