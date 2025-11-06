@@ -25,3 +25,7 @@ buy0Btn.addEventListener("click", async () => {
 cookieBtn.addEventListener("click", () => {
     wss.send("click");
 });
+
+setInterval(() => {
+    location.reload();
+}, 5000);
