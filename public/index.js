@@ -1,17 +1,11 @@
 const cookieCounter = document.getElementById("clicks");
 const cookieBtn = document.getElementById("cookieBtn");
 const buy0Btn = document.getElementById("buy0");
-let protocol;
-if (location.protocol == "http:") {
-    protocol = "ws://";
-}
-else {
-    protocol = "wss://"
-}
-const wss = new WebSocket(`${protocol}${location.hostname}:5050`);
 
-wss.addEventListener("message", (event) => {
-    cookieCounter.textContent = `Clicks: ${event.data}`;
+const socket = io();
+
+socket.on("clicks", (msg) => {
+    cookieCounter.textContent = `Clicks: ${msg}`;
 });
 
 buy0Btn.addEventListener("click", async () => {
@@ -23,5 +17,5 @@ buy0Btn.addEventListener("click", async () => {
 });
 
 cookieBtn.addEventListener("click", () => {
-    wss.send("click");
+    socket.emit("click");
 });

@@ -1,6 +1,6 @@
 import express from "express";
 import http from "http";
-import { WebSocketServer } from "ws";
+import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import path from "path";
 const app = express();
@@ -10,15 +10,12 @@ const __dirname = path.dirname(__filename);
 const rootdir = path.join(__dirname, "..");
 let clicks = 0;
 let countBy = 1;
-const wss = new WebSocketServer({ server });
-wss.on("connection", (ws) => {
-    ws.send(clicks);
-    setInterval(() => {
-        ws.send(clicks);
-    }, 1000);
-    ws.on("message", (message) => {
+const io = new Server(server);
+io.on("connection", (socket) => {
+    io.emit("clicks", clicks);
+    socket.on("click", (msg) => {
         clicks = clicks + countBy;
-        ws.send(clicks);
+        io.emit("clicks", clicks);
     });
 });
 app.use(express.static(rootdir + "/public"));
