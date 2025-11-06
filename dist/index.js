@@ -12,8 +12,10 @@ let clicks = 0;
 let countBy = 1;
 const wss = new WebSocketServer({ server });
 wss.on("connection", (ws) => {
-    console.log("websocket connected");
     ws.send(clicks);
+    setInterval(() => {
+        ws.send(clicks);
+    }, 1000);
     ws.on("message", (message) => {
         clicks = clicks + countBy;
         ws.send(clicks);
