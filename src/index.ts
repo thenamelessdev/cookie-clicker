@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const rootdir = path.join(__dirname, "..");
 let clicks = 0;
 let countBy = 1;
-const port = process.env.port;
+const port = process.env.port || 8080;
 
 const io = new Server(server);
 
@@ -48,4 +48,4 @@ app.get("/buy/:id", (req: Request, res: Response): void => {
 });
 
 
-server.listen(port);
+server.listen({port, host: '0.0.0.0'});

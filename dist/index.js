@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import path from "path";
 import dotenv from "dotenv";
-dotenv.config;
+dotenv.config();
 const app = express();
 const server = http.createServer(app);
 const __filename = fileURLToPath(import.meta.url);
@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename);
 const rootdir = path.join(__dirname, "..");
 let clicks = 0;
 let countBy = 1;
+const port = process.env.port || 8080;
 const io = new Server(server);
 io.on("connection", (socket) => {
     io.emit("clicks", clicks);
@@ -37,8 +38,4 @@ app.get("/buy/:id", (req, res) => {
         res.json({ error: "not found" }).status(404);
     }
 });
-app.get("/set/:balance", (req, res) => {
-    clicks = Number(req.params.balance);
-    res.json({ message: "added money" });
-});
-server.listen(process.env.port);
+server.listen(port, '0.0.0.0');
