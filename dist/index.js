@@ -28,6 +28,7 @@ app.get("/buy/:id", (req, res) => {
         if (clicks >= 100) {
             clicks = clicks - 100;
             countBy = countBy * 2;
+            io.emit("clicks", clicks);
             res.json({ message: "item bought" }).status(200);
         }
         else {
