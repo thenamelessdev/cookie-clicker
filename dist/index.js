@@ -3,6 +3,8 @@ import http from "http";
 import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config;
 const app = express();
 const server = http.createServer(app);
 const __filename = fileURLToPath(import.meta.url);
@@ -39,4 +41,4 @@ app.get("/set/:balance", (req, res) => {
     clicks = Number(req.params.balance);
     res.json({ message: "added money" });
 });
-server.listen(5050);
+server.listen(process.env.port);
