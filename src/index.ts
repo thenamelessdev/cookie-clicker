@@ -46,9 +46,5 @@ app.get("/buy/:id", (req: Request, res: Response): void => {
     }
 });
 
-app.get("/set/:balance", (req: Request, res: Response): void => {
-    clicks = Number(req.params.balance);
-    res.json({ message: "added money" });
-});
 
 server.listen(process.env.port);
