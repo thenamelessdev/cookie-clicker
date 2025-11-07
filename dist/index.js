@@ -15,7 +15,7 @@ let countBy = 1;
 const port = process.env.port || 8080;
 const io = new Server(server);
 io.on("connection", (socket) => {
-    io.emit("clicks", clicks);
+    socket.emit("clicks", clicks);
     socket.on("click", (msg) => {
         clicks = clicks + countBy;
         io.emit("clicks", clicks);
@@ -38,4 +38,4 @@ app.get("/buy/:id", (req, res) => {
         res.json({ error: "not found" }).status(404);
     }
 });
-server.listen(port, '0.0.0.0');
+server.listen({ port, host: '0.0.0.0' });

@@ -19,7 +19,7 @@ const io = new Server(server);
 
 
 io.on("connection", (socket) => {
-    io.emit("clicks", clicks);
+    socket.emit("clicks", clicks);
     socket.on("click", (msg) => {
         clicks = clicks + countBy;
         io.emit("clicks", clicks);
