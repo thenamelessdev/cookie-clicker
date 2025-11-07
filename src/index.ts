@@ -4,7 +4,7 @@ import { Server } from "socket.io";
 import { fileURLToPath } from "url";
 import path from "path";
 import dotenv from "dotenv";
-dotenv.config;
+dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
@@ -13,6 +13,7 @@ const __dirname = path.dirname(__filename);
 const rootdir = path.join(__dirname, "..");
 let clicks = 0;
 let countBy = 1;
+const port = process.env.port;
 
 const io = new Server(server);
 
@@ -47,4 +48,4 @@ app.get("/buy/:id", (req: Request, res: Response): void => {
 });
 
 
-server.listen(process.env.port);
+server.listen(port);
